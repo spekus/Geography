@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/countriesList">
+    <fragment
+        android:id="@+id/countriesList"
+        android:name="com.example.geographyupgraded.screens.countywiki.countrieslist.CountriesListFragment"
+        android:label="CountriesList" >
+        <action
+            android:id="@+id/action_countriesList_to_country_Profile_Fragment"
+            app:destination="@id/country_Profile_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/country_Profile_Fragment"
+        android:name="com.example.geographyupgraded.screens.countywiki.country.CountryProfileFragment"
+        android:label="country_profile_fragment"
+        tools:layout="@layout/country_profile_fragment" >
+        <argument
+            android:name="country"
+            app:argType="string" />
+    </fragment>
+</navigation>

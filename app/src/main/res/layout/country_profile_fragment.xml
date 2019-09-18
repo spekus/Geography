@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.countywiki.country.CountryProfileFragment">
+
+
+    <data>
+        <variable
+            name="viewModel"
+            type= "com.example.geographyupgraded.screens.countywiki.country.CountryProfileViewModel" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mtrl_card_spacing"
+        android:layout_marginTop="@dimen/mtrl_card_spacing"
+        android:layout_marginRight="@dimen/mtrl_card_spacing"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="2dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/country_profile_flag"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                app:imageUrl="@{viewModel.countryLiveData.countryFlagUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/country_profile_name_headline"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="0dp"
+                android:text="Country"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_flag"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/country_profile_name"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.countryLiveData.name}"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_name_headline"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_name_headline"
+                app:layout_constraintTop_toTopOf="@+id/country_profile_name_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_capital_headline"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Capital"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_flag"
+                app:layout_constraintTop_toBottomOf="@+id/country_profile_name_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_capital"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.countryLiveData.capital}"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_capital_headline"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_capital_headline"
+                app:layout_constraintTop_toTopOf="@+id/country_profile_capital_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_region_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:text="Region"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_flag"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_flag"
+                app:layout_constraintTop_toBottomOf="@+id/country_profile_capital_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_region"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.countryLiveData.region}"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_region_headline"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_region_headline"
+                app:layout_constraintTop_toTopOf="@+id/country_profile_region_headline" />
+
+            <ViewAnimator
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_flag"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_flag"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/country_profile_gini_headline"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Gini coefficient"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_population_headline"
+                app:layout_constraintEnd_toStartOf="@+id/country_profile_area_headline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_population_headline"
+                app:layout_constraintTop_toTopOf="@+id/country_profile_population_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_gini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@{String.valueOf(viewModel.countryLiveData.gini)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/country_profile_gini_headline"
+                app:layout_constraintTop_toBottomOf="@+id/country_profile_gini_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_population_headline"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Population"
+                app:layout_constraintEnd_toStartOf="@+id/country_profile_gini_headline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/country_profile_flag" />
+
+            <TextView
+                android:id="@+id/country_profile_population"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@{String.valueOf(viewModel.countryLiveData.population)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/country_profile_population_headline"
+                app:layout_constraintTop_toBottomOf="@+id/country_profile_population_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_area_headline"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:text="Area"
+                app:layout_constraintBottom_toBottomOf="@+id/country_profile_gini_headline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/country_profile_gini_headline"
+                app:layout_constraintTop_toTopOf="@+id/country_profile_gini_headline" />
+
+            <TextView
+                android:id="@+id/country_profile_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@{String.valueOf(viewModel.countryLiveData.getArea)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/country_profile_area_headline"
+                app:layout_constraintTop_toBottomOf="@+id/country_profile_area_headline" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
