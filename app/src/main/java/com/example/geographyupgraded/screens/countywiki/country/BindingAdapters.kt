@@ -1,5 +1,6 @@
 package com.example.geographyupgraded.screens.countywiki.country
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -13,4 +14,9 @@ fun bindImage(imgView : ImageView, imgUrl: String?){
                 .load(imgUri)
                 .into(imgView)
     }
+}
+
+@BindingAdapter("app:hideIfZero")
+fun hideIfZero(view: View, number: Float) {
+    view.visibility = if (number.compareTo(0) == 0) View.GONE else View.VISIBLE
 }
