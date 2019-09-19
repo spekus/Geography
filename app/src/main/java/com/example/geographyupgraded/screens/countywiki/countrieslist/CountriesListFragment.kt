@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.geographyupgraded.R
+import com.example.geographyupgraded.databinding.CountriesListBinding
+import com.example.geographyupgraded.databinding.CountryProfileFragmentBinding
 import com.example.geographyupgraded.factory.BaseViewModelFactory
 import com.example.geographyupgraded.network.models.Country
 import com.example.geographyupgraded.screens.countywiki.country.CountryProfileViewModel
@@ -23,30 +25,31 @@ import kotlinx.android.synthetic.main.countries_list.*
  */
 class CountriesListFragment : Fragment() {
 
-    private lateinit var viewModel: CountriesListViewModel
+    private val viewModel: CountriesListViewModel by lazy {
+        val application = requireNotNull(activity).application
+        ViewModelProviders.of(this, BaseViewModelFactory { CountriesListViewModel(application) })
+            .get(CountriesListViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.countries_list, container, false)
+        val binding = CountriesListBinding.inflate(inflater)
+        binding.setLifecycleOwner(viewLifecycleOwner)
+        binding.viewModel = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val application = requireNotNull(activity).application
-        viewModel = ViewModelProviders.of(
-            this,
-            BaseViewModelFactory { CountriesListViewModel(application) })
-            .get(CountriesListViewModel::class.java)
 
         val mRecyclerViewAdapter = RendererRecyclerViewAdapter()
 
-        viewModel.countries.observe(this, Observer {
+        viewModel.countriesToShow.observe(this, Observer {
             mRecyclerViewAdapter.setItems(it)
             mRecyclerViewAdapter.notifyDataSetChanged()
         })
-
 
         mRecyclerViewAdapter.registerRenderer(
             ViewBinder(

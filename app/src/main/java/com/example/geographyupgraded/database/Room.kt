@@ -7,17 +7,20 @@ import androidx.room.*
 @Dao
 interface CountryDao {
     @Query("SELECT * from countries_table")
-    fun getCountries(): LiveData<List<CountryEntity>>
+    fun getAllCountries(): LiveData<List<CountryEntity>>
 
     @Query("SELECT * from countries_table where shortName = :name")
     fun getCountry(name: String): LiveData<CountryEntity>
+
+    @Query("SELECT * from countries_table where region_name = :regionName")
+    fun getCountriesByRegion(regionName : String): LiveData<List<CountryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg countries: CountryEntity)
 }
 
 
-@Database(entities = [CountryEntity::class], version = 5)
+@Database(entities = [CountryEntity::class], version = 6)
 abstract class CountriesDatabase : RoomDatabase() {
     abstract val countriesDao: CountryDao
 }
@@ -30,7 +33,7 @@ fun getDatabase(context: Context): CountriesDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 CountriesDatabase::class.java,
-                "countries"
+                "allCountries"
             ).fallbackToDestructiveMigration().build()
         }
     }

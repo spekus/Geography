@@ -10,6 +10,7 @@ data class CountryEntity (
     val shortName: String,
     @ColumnInfo(name = "country_name")
     val name: String,
+    @ColumnInfo(name = "region_name")
     val region: String,
     val capital: String,
     val subregion: String,

@@ -24,7 +24,7 @@ class CountryProfileViewModel(application: Application) : AndroidViewModel(appli
     private val countryNameLiveData = MutableLiveData<String>()
 
 
-    var countryLiveData: LiveData<CountryEntity> =
+    val countryLiveData: LiveData<CountryEntity> =
         Transformations.switchMap(countryNameLiveData) { countryName ->
             countriesRepository.loadCountry(countryName)
         }
