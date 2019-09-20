@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            app:hideIfEmpty="@{viewModel.countriesToDisplay}">
 
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
