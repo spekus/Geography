@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -14,68 +13,62 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/main"
+        android:id="@+id/countries_list_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal">
 
             <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleLine="true"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick='@{(view) -> viewModel.selectRegion(view, "Europe")}'
-                    android:text="Europe" />
+                    android:onClick='@{() -> viewModel.selectRegion(constants.EUROPE_REGION)}'
+                    android:text="@string/europe" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick='@{(view ) -> viewModel.selectRegion(view , "Africa")}'
-                    android:text="Africa" />
+                    android:onClick='@{() -> viewModel.selectRegion(constants.AFRICA_REGION)}'
+                    android:text="@string/africa" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick='@{(view ) -> viewModel.selectRegion(view , "Americas")}'
-                    android:text="Americas" />
+                    android:onClick='@{() -> viewModel.selectRegion(constants.AMERICAS_REGION)}'
+                    android:text="@string/americas" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick='@{(view ) -> viewModel.selectRegion(view , "Polar")}'
-                    android:text="Polar" />
+                    android:onClick='@{() -> viewModel.selectRegion(constants.OCEANIA_REGION)}'
+                    android:text="@string/oceania" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick='@{(view ) -> viewModel.selectRegion(view , "Oceania")}'
-                    android:text="Oceania" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
                     android:onClick= "@{() -> viewModel.resetToAllCountries()}"
-                    android:text="All" />
+                    android:text="@string/all" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 

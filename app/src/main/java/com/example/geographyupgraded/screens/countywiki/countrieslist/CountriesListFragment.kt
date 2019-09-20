@@ -39,6 +39,7 @@ class CountriesListFragment : Fragment() {
         val binding = CountriesListBinding.inflate(inflater)
         binding.setLifecycleOwner(viewLifecycleOwner)
         binding.viewModel = viewModel
+        binding.constants = CountriesListViewModel.Companion
         return binding.root
     }
 

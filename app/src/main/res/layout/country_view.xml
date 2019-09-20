@@ -44,6 +44,4 @@
                 tools:text="Country Name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-
 </LinearLayout>
