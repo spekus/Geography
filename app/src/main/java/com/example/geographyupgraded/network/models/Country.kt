@@ -1,6 +1,6 @@
 package com.example.geographyupgraded.network.models
 
-import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
+import com.example.geographyupgraded.database.CountryEntity
 
 data class Country(
     val alpha2Code: String = "",
@@ -13,4 +13,25 @@ data class Country(
     val area: Float? = 0f,
     val gini: Float? = 0f,
     val flagUrl: String? = null
-) : ViewModel
+)
+
+fun Country.asCountryEntity(): CountryEntity {
+    return CountryEntity(
+        shortName = this.name,
+        name = this.name,
+        region = this.region ?: "",
+        capital = this.capital ?: "",
+        subregion = this.subregion ?: "",
+        population = this.population ?: 0L,
+        area = this.area ?: 0F,
+        gini = this.gini ?: 0F,
+        countryFlagUrl = baseUrl + this.alpha2Code + closingUrl
+    )
+}
+
+fun List<Country>.asCountryEntity(): List<CountryEntity> {
+    return this.map { it.asCountryEntity() }
+}
+
+const val baseUrl = "https://www.countryflags.io/"
+const val closingUrl = "/shiny/64.png"

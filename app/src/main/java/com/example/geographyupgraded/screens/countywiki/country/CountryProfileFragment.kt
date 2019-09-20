@@ -23,7 +23,7 @@ class CountryProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = CountryProfileFragmentBinding.inflate(inflater)
-        binding.setLifecycleOwner(viewLifecycleOwner)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
     }

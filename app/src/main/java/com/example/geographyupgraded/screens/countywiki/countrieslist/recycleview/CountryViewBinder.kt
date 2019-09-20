@@ -3,14 +3,15 @@ import androidx.navigation.NavController
 import com.example.geographyupgraded.R
 import com.example.geographyupgraded.network.models.Country
 import com.example.geographyupgraded.screens.countywiki.countrieslist.CountriesListFragmentDirections
+import com.example.geographyupgraded.screens.countywiki.presentationmodels.CountryPresentationModel
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewFinder
 import com.google.android.material.card.MaterialCardView
 
 class CountryViewBinder(
     private val navController: NavController
-) : ViewBinder.Binder<Country> {
-    override fun bindView(model: Country, finder: ViewFinder, payloads: MutableList<Any>) {
+) : ViewBinder.Binder<CountryPresentationModel> {
+    override fun bindView(model: CountryPresentationModel, finder: ViewFinder, payloads: MutableList<Any>) {
         val capital = finder.find(R.id.countries_list_country_capital) as TextView
         val countryName = finder.find(R.id.countries_list_country_name) as TextView
         capital.text = model.capital

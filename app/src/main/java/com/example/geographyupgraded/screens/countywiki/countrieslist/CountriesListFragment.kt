@@ -12,10 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.geographyupgraded.R
 import com.example.geographyupgraded.databinding.CountriesListBinding
-import com.example.geographyupgraded.databinding.CountryProfileFragmentBinding
 import com.example.geographyupgraded.factory.BaseViewModelFactory
-import com.example.geographyupgraded.network.models.Country
-import com.example.geographyupgraded.screens.countywiki.country.CountryProfileViewModel
+import com.example.geographyupgraded.screens.countywiki.presentationmodels.CountryPresentationModel
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import kotlinx.android.synthetic.main.countries_list.*
@@ -37,7 +35,7 @@ class CountriesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = CountriesListBinding.inflate(inflater)
-        binding.setLifecycleOwner(viewLifecycleOwner)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         binding.constants = CountriesListViewModel.Companion
         return binding.root
@@ -47,7 +45,7 @@ class CountriesListFragment : Fragment() {
 
         val mRecyclerViewAdapter = RendererRecyclerViewAdapter()
 
-        viewModel.countriesToShow.observe(this, Observer {
+        viewModel.countriesToDisplay.observe(this, Observer {
             mRecyclerViewAdapter.setItems(it)
             mRecyclerViewAdapter.notifyDataSetChanged()
         })
@@ -55,7 +53,7 @@ class CountriesListFragment : Fragment() {
         mRecyclerViewAdapter.registerRenderer(
             ViewBinder(
                 R.layout.country_view,
-                Country::class.java,
+                CountryPresentationModel::class.java,
                 CountryViewBinder(this.findNavController())
             )
         )

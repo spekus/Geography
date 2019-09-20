@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick= "@{() -> viewModel.resetToAllCountries()}"
+                    android:onClick= "@{() -> viewModel.selectAllCountries()}"
                     android:text="@string/all" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>

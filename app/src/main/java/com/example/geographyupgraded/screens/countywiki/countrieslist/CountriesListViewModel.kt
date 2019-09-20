@@ -1,13 +1,12 @@
 package com.example.geographyupgraded.screens.countywiki.countrieslist
 
 import android.app.Application
-import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.geographyupgraded.database.CountriesRepository
+import com.example.geographyupgraded.database.asPresentationModel
 import com.example.geographyupgraded.database.getDatabase
-import com.example.geographyupgraded.network.models.Country
+import com.example.geographyupgraded.screens.countywiki.presentationmodels.CountryPresentationModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -18,32 +17,26 @@ class CountriesListViewModel(application: Application) : AndroidViewModel(applic
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val database = getDatabase(application)
-    val countriesRepository = CountriesRepository(database)
+    private val repository = CountryListRepository(database)
 
-    val allCountries: LiveData<List<Country>> = countriesRepository.countries
-    val selectedCountries = countriesRepository.selectedCountries
-    val isRegionSelected = countriesRepository.isAnyRegionSelected
-
-    val countriesToShow = Transformations.switchMap(isRegionSelected) { isRegionSelected ->
-        when (isRegionSelected) {
-            true -> selectedCountries
-            else -> allCountries
+    val countriesToDisplay: LiveData<List<CountryPresentationModel>> =
+        Transformations.map(repository.countriesToDisplay) {
+            it.asPresentationModel()
         }
-    }
 
     init {
         viewModelScope.launch {
-            countriesRepository.refreshCountries()
+            repository.refreshCountries()
         }
-        resetToAllCountries()
+        selectAllCountries()
     }
 
-    fun resetToAllCountries() {
-        countriesRepository.resetRegion()
+    fun selectAllCountries() {
+        repository.unSelectRegion()
     }
 
     fun selectRegion(countryName: String) {
-        countriesRepository.selectRegion(countryName)
+        repository.selectRegion(countryName)
     }
 
     companion object {
