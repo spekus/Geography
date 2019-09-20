@@ -10,13 +10,10 @@ import kotlinx.coroutines.launch
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.LiveData
 import com.example.geographyupgraded.database.asPresentationModel
-import com.example.geographyupgraded.screens.countywiki.presentationmodels.CountryPresentationModel
+import com.example.geographyupgraded.screens.countywiki.BaseViewModel
+import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 
-class CountryProfileViewModel(application: Application) : AndroidViewModel(application) {
-    private val viewModelJob = SupervisorJob()
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    private val database = getDatabase(application)
+class CountryProfileViewModel(application: Application) : BaseViewModel(application) {
     private val repository = CountryRepository(database)
 
     val countryLiveData : LiveData<CountryPresentationModel> = Transformations.map(repository.countryEntity){

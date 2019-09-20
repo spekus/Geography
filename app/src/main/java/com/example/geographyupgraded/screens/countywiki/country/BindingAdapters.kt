@@ -6,7 +6,7 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
-import com.example.geographyupgraded.screens.countywiki.presentationmodels.CountryPresentationModel
+import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {

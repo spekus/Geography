@@ -13,16 +13,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.geographyupgraded.R
 import com.example.geographyupgraded.databinding.CountriesListBinding
 import com.example.geographyupgraded.factory.BaseViewModelFactory
-import com.example.geographyupgraded.screens.countywiki.presentationmodels.CountryPresentationModel
+import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import kotlinx.android.synthetic.main.countries_list.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class CountriesListFragment : Fragment() {
-
     private val viewModel: CountriesListViewModel by lazy {
         val application = requireNotNull(activity).application
         ViewModelProviders.of(this, BaseViewModelFactory { CountriesListViewModel(application) })

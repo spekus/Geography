@@ -1,4 +1,4 @@
-package com.example.geographyupgraded.screens.countywiki.presentationmodels
+package com.example.geographyupgraded.screens.countywiki
 
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 
