@@ -7,6 +7,8 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -30,3 +32,13 @@ fun hideIfEmpty(view: View, data: LiveData<List<CountryPresentationModel>>) {
         else -> view.visibility = View.VISIBLE
     }
 }
+
+@BindingAdapter("app:hideIfNotEmpty")
+fun hideIfNotEmpty(view: View, data: LiveData<List<CountryPresentationModel>>) {
+    val shimmer = view as ShimmerFrameLayout
+    if (!data.value.isNullOrEmpty()) {
+        shimmer.stopShimmer()
+        shimmer.visibility = View.GONE
+    }
+}
+

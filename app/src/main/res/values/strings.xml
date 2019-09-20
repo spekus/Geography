@@ -12,4 +12,5 @@
     <string name="gini_coefficient">Gini coefficient</string>
     <string name="population">Population</string>
     <string name="area">Area</string>
+    <string name="no_data">No Data</string>
 </resources>

@@ -79,4 +79,7 @@ dependencies {
     // Room database
     implementation "androidx.room:room-runtime:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
+    
+    //Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.4.0'
 }

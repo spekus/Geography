@@ -1,5 +1,6 @@
 package com.example.geographyupgraded.screens.countywiki.countrieslist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -10,6 +11,7 @@ import com.example.geographyupgraded.network.Network
 import com.example.geographyupgraded.network.models.asCountryEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class CountryListRepository(private val database: CountriesDatabase) {
 
@@ -42,11 +44,15 @@ class CountryListRepository(private val database: CountriesDatabase) {
 
     suspend fun refreshCountries() {
         withContext(Dispatchers.IO) {
-            val countries = Network.devbytes.getCountries().await()
-            val countryEntities = countries.map {
-                it.asCountryEntity()
-            }.toTypedArray()
-            database.countriesDao.insertAll(*countryEntities)
+            try {
+                val countries = Network.devbytes.getCountries().await()
+                val countryEntities = countries.map {
+                    it.asCountryEntity()
+                }.toTypedArray()
+                database.countriesDao.insertAll(*countryEntities)
+            }catch (e : Exception){
+                Log.e("CountryListRepository", "Api call Failed")
+            }
         }
     }
 }

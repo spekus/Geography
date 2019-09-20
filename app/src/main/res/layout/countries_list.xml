@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.geographyupgraded.screens.countywiki.countrieslist.CountriesListViewModel" />
@@ -21,8 +22,8 @@
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             app:hideIfEmpty="@{viewModel.countriesToDisplay}">
 
             <com.google.android.material.chip.ChipGroup
@@ -68,10 +69,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:onClick= "@{() -> viewModel.selectAllCountries()}"
+                    android:onClick="@{() -> viewModel.selectAllCountries()}"
                     android:text="@string/all" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
+
+        <!-- PlaceHolder for country list, shown only until there is country data-->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_auto_start="true"
+            app:hideIfNotEmpty="@{viewModel.countriesToDisplay}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+                <include layout="@layout/country_view" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/countries_list_recycle_view"
