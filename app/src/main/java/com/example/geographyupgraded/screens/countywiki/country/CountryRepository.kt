@@ -7,7 +7,6 @@ import com.example.geographyupgraded.database.CountriesDatabase
 import com.example.geographyupgraded.database.CountryEntity
 
 class CountryRepository(private val database: CountriesDatabase) {
-
     private val countryNameLiveData = MutableLiveData<String>()
 
     val countryEntity: LiveData<CountryEntity> =
@@ -16,7 +15,7 @@ class CountryRepository(private val database: CountriesDatabase) {
         }
     
     private fun getCountry(countryName: String): LiveData<CountryEntity> {
-        return database.countriesDao.getCountry(countryName)
+        return database.countriesDao!!.getCountry(countryName)
     }
 
     fun selectCountry(country: String) {

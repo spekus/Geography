@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.geographyupgraded.R
 import com.example.geographyupgraded.databinding.CountriesListBinding
 import com.example.geographyupgraded.factory.BaseViewModelFactory
+import com.example.geographyupgraded.network.CountryApiStatus
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder

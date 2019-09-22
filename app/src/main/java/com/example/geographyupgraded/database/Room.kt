@@ -15,6 +15,9 @@ interface CountryDao {
     @Query("SELECT * from countries_table where region_name = :regionName")
     fun getCountriesByRegion(regionName : String): LiveData<List<CountryEntity>>
 
+    @Query("SELECT * from countries_table LIMIT 1")
+    fun getAnyCountry(): CountryEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg countries: CountryEntity)
 }
@@ -22,7 +25,7 @@ interface CountryDao {
 
 @Database(entities = [CountryEntity::class], version = 6)
 abstract class CountriesDatabase : RoomDatabase() {
-    abstract val countriesDao: CountryDao
+    abstract val countriesDao: CountryDao?
 }
 
 private lateinit var INSTANCE: CountriesDatabase

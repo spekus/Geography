@@ -2,10 +2,13 @@ package com.example.geographyupgraded.screens.countywiki.country
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
+import com.example.geographyupgraded.R
+import com.example.geographyupgraded.network.CountryApiStatus
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -34,11 +37,19 @@ fun hideIfEmpty(view: View, data: LiveData<List<CountryPresentationModel>>) {
 }
 
 @BindingAdapter("app:hideIfNotEmpty")
-fun hideIfNotEmpty(view: View, data: LiveData<List<CountryPresentationModel>>) {
-    val shimmer = view as ShimmerFrameLayout
+fun hideIfNotEmpty(view: ShimmerFrameLayout, data: LiveData<List<CountryPresentationModel>>) {
     if (!data.value.isNullOrEmpty()) {
-        shimmer.stopShimmer()
-        shimmer.visibility = View.GONE
+        view.stopShimmer()
+        view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter("app:handleApiError")
+fun handleApiError(view: ShimmerFrameLayout, status: LiveData<CountryApiStatus?>) {
+    if (status.value == CountryApiStatus.ERROR) {
+        view.visibility = View.VISIBLE
+        view.stopShimmer()
+        Toast.makeText(view.context, view.context.getString(R.string.api_call_error_message), Toast.LENGTH_LONG).show()
     }
 }
 

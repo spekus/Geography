@@ -4,12 +4,15 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.geographyupgraded.database.asPresentationModel
+import com.example.geographyupgraded.network.CountryApiStatus
 import com.example.geographyupgraded.screens.countywiki.BaseViewModel
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 import kotlinx.coroutines.launch
 
 class CountriesListViewModel(application: Application) : BaseViewModel(application) {
     private val repository = CountryListRepository(database)
+
+    val status: LiveData<CountryApiStatus?> = repository.status
 
     val countriesToDisplay: LiveData<List<CountryPresentationModel>> =
         Transformations.map(repository.countriesToDisplay) {
@@ -18,7 +21,9 @@ class CountriesListViewModel(application: Application) : BaseViewModel(applicati
 
     init {
         viewModelScope.launch {
-            repository.refreshCountries()
+            if (repository.areCountriesNotInitialized()) {
+                repository.initializeCountries()
+            }
         }
         selectAllCountries()
     }
