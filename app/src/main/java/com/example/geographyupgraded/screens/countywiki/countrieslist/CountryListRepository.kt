@@ -11,6 +11,7 @@ import com.example.geographyupgraded.network.Network
 import com.example.geographyupgraded.network.models.asCountryEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.lang.Exception
 
 class CountryListRepository(private val database: CountriesDatabase) {
@@ -71,7 +72,7 @@ class CountryListRepository(private val database: CountriesDatabase) {
     private suspend fun handleError(e :Exception) {
         withContext(Dispatchers.Main) {
             _apiCallStatus.value = CountryApiStatus.ERROR
-            Log.e("CountryListRepository", "Api call Failed, ${e.localizedMessage}")
+            Timber.e( "Api call Failed, ${e.localizedMessage}")
         }
     }
 }

@@ -67,11 +67,11 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
 
     //Material
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "com.google.android.material:material:$version_material"
+    implementation "androidx.legacy:legacy-support-v4:$version_material"
 
     //Recycle View
-    implementation 'com.github.vivchar:RendererRecyclerViewAdapter:2.8.0'
+    implementation "com.github.vivchar:RendererRecyclerViewAdapter:$version_recycler_view"
 
     // Glide for images
     implementation "com.github.bumptech.glide:glide:$version_glide"
@@ -81,5 +81,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$version_room"
     
     //Shimmer
-    implementation 'com.facebook.shimmer:shimmer:0.4.0'
+    implementation "com.facebook.shimmer:shimmer:$version_shimmer"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:$version_timber"
 }
