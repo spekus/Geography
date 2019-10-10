@@ -7,10 +7,14 @@ import com.example.geographyupgraded.database.asPresentationModel
 import com.example.geographyupgraded.network.CountryApiStatus
 import com.example.geographyupgraded.screens.countywiki.BaseViewModel
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
+import com.example.geographyupgraded.screens.countywiki.country.CountryRepository
 import kotlinx.coroutines.launch
 
-class CountriesListViewModel(application: Application) : BaseViewModel(application) {
-    private val repository = CountryListRepository(database)
+class CountriesListViewModel(
+    application: Application
+
+) : BaseViewModel(application) {
+    private val repository : CountryListRepository = CountryListRepository(database)
 
     val status: LiveData<CountryApiStatus?> = repository.status
 

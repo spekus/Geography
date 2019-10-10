@@ -18,6 +18,7 @@ import com.example.geographyupgraded.network.CountryApiStatus
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.countries_list.*
 
 class CountriesListFragment : Fragment() {

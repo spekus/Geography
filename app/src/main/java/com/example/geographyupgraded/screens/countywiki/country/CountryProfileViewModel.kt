@@ -12,9 +12,15 @@ import androidx.lifecycle.LiveData
 import com.example.geographyupgraded.database.asPresentationModel
 import com.example.geographyupgraded.screens.countywiki.BaseViewModel
 import com.example.geographyupgraded.screens.countywiki.CountryPresentationModel
+import javax.inject.Inject
 
-class CountryProfileViewModel(application: Application) : BaseViewModel(application) {
-    private val repository = CountryRepository(database)
+class CountryProfileViewModel
+    @Inject constructor
+        (application: Application,
+         val repository: CountryRepository) : BaseViewModel(application) {
+
+
+//    private val repository : CountryRepository = CountryRepository(database)
 
     val countryLiveData : LiveData<CountryPresentationModel> = Transformations.map(repository.countryEntity){
         countryEntity -> countryEntity.asPresentationModel()

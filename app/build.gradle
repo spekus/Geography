@@ -85,4 +85,11 @@ dependencies {
 
     //Timber
     implementation "com.jakewharton.timber:timber:$version_timber"
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$version_dagger"
+    kapt "com.google.dagger:dagger-compiler:$version_dagger"
+    implementation "com.google.dagger:dagger-android:$version_dagger"
+    implementation "com.google.dagger:dagger-android-support:$version_dagger"
+    kapt "com.google.dagger:dagger-android-processor:$version_dagger"
 }
